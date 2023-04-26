@@ -8,7 +8,66 @@
 
 <body>
 	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+<!--     <script type="text/javascript" src="./script.js">
+</script> -->
+	<div class="form-group">
+  <form onsubmit="addBook()">
+    <label for="title">Title:</label>
+    <input type="text" id="title" required /><br />
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" required /><br />
+
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" required /><br />
+
+    <input type="submit" value="Add Book" id="submit" />
+  </form>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN#</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="book-list"></tbody>
+</table>
+
+<script>
+  function addBook() {
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var isbn = document.getElementById("isbn").value;
+
+    var table = document.getElementById("book-list");
+    var newRow = table.insertRow();
+
+    var titleCell = newRow.insertCell();
+    var authorCell = newRow.insertCell();
+    var isbnCell = newRow.insertCell();
+    var deleteCell = newRow.insertCell();
+
+    titleCell.innerHTML = title;
+    authorCell.innerHTML = author;
+    isbnCell.innerHTML = isbn;
+    deleteCell.innerHTML =
+      '<button class="delete" onclick="deleteRow(this)">Clear</button>';
+    
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("isbn").value = "";
+    
+    return false;
+  }
+
+  function deleteRow(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
 </script>
 
 </body>
